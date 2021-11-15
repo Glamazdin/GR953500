@@ -1,0 +1,15 @@
+﻿@page
+ 
+@model GR953500.Pages.DemoModel
+@{
+}
+
+<form class="form" method="post">
+    <label class="form-control">Введите число</label>
+    <input type="number" name="id" />
+    <button type="submit">Go</button>
+</form>
+
+<p>
+    @Model.Data
+</p>

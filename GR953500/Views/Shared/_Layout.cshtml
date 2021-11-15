@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container"> 
+        <strong>Содержимое ViewData</strong>
+    @if (ViewData.Count == 0)
+    {<h4>ViewData has no data</h4>}
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Key</th> <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var key in ViewData.Keys)
+                {
+                    <tr>
+                        <td>@key</td><td>@ViewData[key]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } 
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    @await RenderSectionAsync("Scripts",false)
+</body>
+</html>

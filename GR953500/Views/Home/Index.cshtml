@@ -1,0 +1,58 @@
+﻿
+@using Microsoft.AspNetCore.Html
+
+@{
+    var books = ViewData["books"] as SelectList;
+
+} 
+@model IEnumerable<Book>
+
+@functions {
+    public string MakeRow(Book book) =>
+         $"<tr><td>{book.BookId}</td>"
+            +$"<td>{book.Name}</td>"
+            +$"<td>{book.Author}</td></tr>";
+
+   public IHtmlContent MakeRow2(Book book) =>
+        Html.Raw(
+         $"<tr><td>{book.BookId}</td>"
+            +$"<td>{book.Name}</td>"
+            +$"<td>{book.Author}</td></tr>");
+
+}
+
+<h2>Name=@ViewData["name"]</h2>
+
+    <table class="table table-striped">
+        @foreach(var book in Model)
+        {           
+            <partial name="_RowPartial" model="@book"/>
+        }
+    </table>
+    <table class="table table-striped mt-5">
+        @foreach(var book in Model)
+        {           
+            @await Component.InvokeAsync("Row",book)
+            
+        }
+    </table>
+
+    @Html.ActionLink("jkjh","Privacy","Home",null,
+    new{@class="btn btn-default"})
+
+    <a class="btn btn-danger">kjhkjjh</a>
+
+    <select name="sel">
+        <option value="1">Select1</option>
+        <option value="2">Select2</option>
+        <option value="3">Select3</option>
+        <option value="4">Select4</option>
+    </select>
+
+    <select asp-items="@books"></select>
+
+    <email mail-to="gogogo"></email>
+
+    <user user-id="1"></user>
+    
+    <a class="btn btn-info" href="/Home/UserInfo/1">Show user Info</a>
